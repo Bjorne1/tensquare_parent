@@ -5,6 +5,7 @@ import com.tensquare.qa.pojo.Problem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import util.IdWorker;
@@ -30,6 +31,45 @@ public class ProblemService {
 
     @Autowired
     private IdWorker idWorker;
+
+    /**
+     * 最新问答列表
+     *
+     * @param labelId
+     * @param page
+     * @param size
+     * @return
+     */
+    public Page<Problem> newList(String labelId, int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size);
+        return problemDao.newList(labelId, pageable);
+    }
+
+    /**
+     * 最热问答列表
+     *
+     * @param labelId
+     * @param page
+     * @param size
+     * @return
+     */
+    public Page<Problem> hotList(String labelId, int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size);
+        return problemDao.hotList(labelId, pageable);
+    }
+
+    /**
+     * 等待问答列表
+     *
+     * @param labelId
+     * @param page
+     * @param size
+     * @return
+     */
+    public Page<Problem> waitList(String labelId, int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size);
+        return problemDao.waitList(labelId, pageable);
+    }
 
     /**
      * 查询全部列表
