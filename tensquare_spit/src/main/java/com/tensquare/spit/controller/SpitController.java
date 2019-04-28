@@ -2,9 +2,12 @@ package com.tensquare.spit.controller;
 
 import com.tensquare.spit.pojo.Spit;
 import com.tensquare.spit.service.SpitService;
+import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -20,6 +23,9 @@ public class SpitController {
     @Autowired
     private SpitService spitService;
 
+    @Autowired
+    private RedisTemplate<String, Integer> redisTemplate;
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public Result findAll() {
         return new Result(true, StatusCode.OK, "查询成功", spitService.findAll());
@@ -28,6 +34,12 @@ public class SpitController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Result findById(@PathVariable String id) {
         return new Result(true, StatusCode.OK, "查询成功", spitService.findById(id));
+    }
+
+    @RequestMapping(value = "/comment/{parentId}/{page}/{size}", method = RequestMethod.GET)
+    public Result findById(@PathVariable String parentId, @PathVariable int page, @PathVariable int size) {
+        Page<Spit> spitPage = spitService.findByParentid(parentId, page, size);
+        return new Result(true, StatusCode.OK, "查询成功", new PageResult<>(spitPage.getTotalElements(), spitPage.getContent()));
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -41,6 +53,18 @@ public class SpitController {
         spit.set_id(id);
         spitService.update(spit);
         return new Result(true, StatusCode.OK, "更新成功");
+    }
+
+    @RequestMapping(value = "/thumbup/{id}", method = RequestMethod.PUT)
+    public Result thumbUp(@PathVariable String id) {
+        String userId = "123";
+        if (redisTemplate.opsForValue().get("thumbup_" + userId) != null) {
+            return new Result(false, StatusCode.OK, "点赞失败");
+        }
+
+        spitService.thumbup(id);
+        redisTemplate.opsForValue().set("thumbup_" + userId, 1);
+        return new Result(true, StatusCode.OK, "点赞成功");
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
