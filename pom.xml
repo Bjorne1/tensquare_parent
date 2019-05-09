@@ -19,7 +19,7 @@
     <packaging>pom</packaging>
 
     <name>tensquare_parent</name>
-    <description>十次方项目-黑马程序员</description>
+    <description>Practice Project</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
