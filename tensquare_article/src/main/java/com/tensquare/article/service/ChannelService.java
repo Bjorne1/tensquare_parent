@@ -120,15 +120,15 @@ public class ChannelService {
 				List<Predicate> predicateList = new ArrayList<Predicate>();
                 // ID
                 if (searchMap.get("id")!=null && !"".equals(searchMap.get("id"))) {
-                	predicateList.add(cb.like(root.get("id").as(String.class), "%"+(String)searchMap.get("id")+"%"));
+                	predicateList.add(cb.like(root.get("id").as(String.class), "%"+ searchMap.get("id") +"%"));
                 }
                 // 频道名称
                 if (searchMap.get("name")!=null && !"".equals(searchMap.get("name"))) {
-                	predicateList.add(cb.like(root.get("name").as(String.class), "%"+(String)searchMap.get("name")+"%"));
+                	predicateList.add(cb.like(root.get("name").as(String.class), "%"+ searchMap.get("name") +"%"));
                 }
                 // 状态
                 if (searchMap.get("state")!=null && !"".equals(searchMap.get("state"))) {
-                	predicateList.add(cb.like(root.get("state").as(String.class), "%"+(String)searchMap.get("state")+"%"));
+                	predicateList.add(cb.like(root.get("state").as(String.class), "%"+ searchMap.get("state") +"%"));
                 }
 				
 				return cb.and( predicateList.toArray(new Predicate[predicateList.size()]));

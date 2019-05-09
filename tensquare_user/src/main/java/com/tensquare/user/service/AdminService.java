@@ -120,19 +120,19 @@ public class AdminService {
                 List<Predicate> predicateList = new ArrayList<Predicate>();
                 // ID
                 if (searchMap.get("id") != null && !"".equals(searchMap.get("id"))) {
-                    predicateList.add(cb.like(root.get("id").as(String.class), "%" + (String) searchMap.get("id") + "%"));
+                    predicateList.add(cb.like(root.get("id").as(String.class), "%" + searchMap.get("id") + "%"));
                 }
                 // 登陆名称
                 if (searchMap.get("loginname") != null && !"".equals(searchMap.get("loginname"))) {
-                    predicateList.add(cb.like(root.get("loginname").as(String.class), "%" + (String) searchMap.get("loginname") + "%"));
+                    predicateList.add(cb.like(root.get("loginname").as(String.class), "%" + searchMap.get("loginname") + "%"));
                 }
                 // 密码
                 if (searchMap.get("password") != null && !"".equals(searchMap.get("password"))) {
-                    predicateList.add(cb.like(root.get("password").as(String.class), "%" + (String) searchMap.get("password") + "%"));
+                    predicateList.add(cb.like(root.get("password").as(String.class), "%" + searchMap.get("password") + "%"));
                 }
                 // 状态
                 if (searchMap.get("state") != null && !"".equals(searchMap.get("state"))) {
-                    predicateList.add(cb.like(root.get("state").as(String.class), "%" + (String) searchMap.get("state") + "%"));
+                    predicateList.add(cb.like(root.get("state").as(String.class), "%" + searchMap.get("state") + "%"));
                 }
 
                 return cb.and(predicateList.toArray(new Predicate[predicateList.size()]));

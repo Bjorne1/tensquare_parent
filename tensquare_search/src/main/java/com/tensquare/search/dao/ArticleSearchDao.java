@@ -18,6 +18,6 @@ public interface ArticleSearchDao extends ElasticsearchRepository<Article, Strin
      * @param title,content
      * @return Article
      */
-    public Page<Article> findByTitleOrContentLike(String title, String
+    Page<Article> findByTitleOrContentLike(String title, String
             content, Pageable pageable);
 }

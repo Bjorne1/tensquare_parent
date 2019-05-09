@@ -177,39 +177,39 @@ public class UserService {
                 List<Predicate> predicateList = new ArrayList<Predicate>();
                 // ID
                 if (searchMap.get("id") != null && !"".equals(searchMap.get("id"))) {
-                    predicateList.add(cb.like(root.get("id").as(String.class), "%" + (String) searchMap.get("id") + "%"));
+                    predicateList.add(cb.like(root.get("id").as(String.class), "%" + searchMap.get("id") + "%"));
                 }
                 // 手机号码
                 if (searchMap.get("mobile") != null && !"".equals(searchMap.get("mobile"))) {
-                    predicateList.add(cb.like(root.get("mobile").as(String.class), "%" + (String) searchMap.get("mobile") + "%"));
+                    predicateList.add(cb.like(root.get("mobile").as(String.class), "%" + searchMap.get("mobile") + "%"));
                 }
                 // 密码
                 if (searchMap.get("password") != null && !"".equals(searchMap.get("password"))) {
-                    predicateList.add(cb.like(root.get("password").as(String.class), "%" + (String) searchMap.get("password") + "%"));
+                    predicateList.add(cb.like(root.get("password").as(String.class), "%" + searchMap.get("password") + "%"));
                 }
                 // 昵称
                 if (searchMap.get("nickname") != null && !"".equals(searchMap.get("nickname"))) {
-                    predicateList.add(cb.like(root.get("nickname").as(String.class), "%" + (String) searchMap.get("nickname") + "%"));
+                    predicateList.add(cb.like(root.get("nickname").as(String.class), "%" + searchMap.get("nickname") + "%"));
                 }
                 // 性别
                 if (searchMap.get("sex") != null && !"".equals(searchMap.get("sex"))) {
-                    predicateList.add(cb.like(root.get("sex").as(String.class), "%" + (String) searchMap.get("sex") + "%"));
+                    predicateList.add(cb.like(root.get("sex").as(String.class), "%" + searchMap.get("sex") + "%"));
                 }
                 // 头像
                 if (searchMap.get("avatar") != null && !"".equals(searchMap.get("avatar"))) {
-                    predicateList.add(cb.like(root.get("avatar").as(String.class), "%" + (String) searchMap.get("avatar") + "%"));
+                    predicateList.add(cb.like(root.get("avatar").as(String.class), "%" + searchMap.get("avatar") + "%"));
                 }
                 // E-Mail
                 if (searchMap.get("email") != null && !"".equals(searchMap.get("email"))) {
-                    predicateList.add(cb.like(root.get("email").as(String.class), "%" + (String) searchMap.get("email") + "%"));
+                    predicateList.add(cb.like(root.get("email").as(String.class), "%" + searchMap.get("email") + "%"));
                 }
                 // 兴趣
                 if (searchMap.get("interest") != null && !"".equals(searchMap.get("interest"))) {
-                    predicateList.add(cb.like(root.get("interest").as(String.class), "%" + (String) searchMap.get("interest") + "%"));
+                    predicateList.add(cb.like(root.get("interest").as(String.class), "%" + searchMap.get("interest") + "%"));
                 }
                 // 个性
                 if (searchMap.get("personality") != null && !"".equals(searchMap.get("personality"))) {
-                    predicateList.add(cb.like(root.get("personality").as(String.class), "%" + (String) searchMap.get("personality") + "%"));
+                    predicateList.add(cb.like(root.get("personality").as(String.class), "%" + searchMap.get("personality") + "%"));
                 }
 
                 return cb.and(predicateList.toArray(new Predicate[predicateList.size()]));
