@@ -35,6 +35,24 @@ public class UserController {
         return new Result(true, StatusCode.OK, "发送成功");
     }
 
+
+    /**
+     * 用户登录
+     *
+     * @param mobile
+     * @param password
+     * @return
+     */
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Result login(String mobile, String password) {
+        User user = userService.findByMobileAndPassword(mobile, password);
+        if (user != null) {
+            return new Result(true, StatusCode.OK, "登陆成功");
+        } else {
+            return new Result(false, StatusCode.LOGINERROR, "用户名或密码错误");
+        }
+    }
+
     /**
      * 用户注册
      *
