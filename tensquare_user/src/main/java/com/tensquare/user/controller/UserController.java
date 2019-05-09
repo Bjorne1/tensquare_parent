@@ -8,7 +8,9 @@ import entity.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import util.JwtUtil;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -23,6 +25,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     /**
      * 发送短信验证码
@@ -47,7 +52,13 @@ public class UserController {
     public Result login(String mobile, String password) {
         User user = userService.findByMobileAndPassword(mobile, password);
         if (user != null) {
-            return new Result(true, StatusCode.OK, "登陆成功");
+            String token = jwtUtil.createJWT(user.getId(),
+                    user.getNickname(), "user");
+            Map map = new HashMap();
+            map.put("token", token);
+            map.put("name", user.getNickname());//昵称
+            map.put("avatar", user.getAvatar());//头像
+            return new Result(true, StatusCode.OK, "登陆成功", map);
         } else {
             return new Result(false, StatusCode.LOGINERROR, "用户名或密码错误");
         }
