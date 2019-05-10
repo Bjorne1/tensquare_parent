@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: tensquare‐config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/xiaotian2010/tensquare-config.git
+server:
+  port: 12000
