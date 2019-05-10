@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @Author: WenChangSheng
  * @Date: Created in 2019/5/10 8:58
  */
-@FeignClient("tensquare-base")
+@FeignClient(value = "tensquare-base", fallback = LabelClientImpl.class)
 public interface LabelClient {
 
     @RequestMapping(value = "/label/{id}", method = RequestMethod.GET)
-    public Result findById(@PathVariable("id") String id);
+    Result findById(@PathVariable("id") String id);
 }
