@@ -2,13 +2,13 @@ server:
   port: 9007
 spring:
   application:
-    name: tensquare‐search #指定服务名
+    name: tensquare-search #指定服务名
   data:
     elasticsearch:
-      cluster‐nodes: 192.168.233.128:9300
+      cluster-nodes: 192.168.233.128:9300
 eureka:
   client:
-    service‐url:
+    service-url:
       defaultZone: http://localhost:6868/eureka
   instance:
-    prefer‐ip‐address: true
+    prefer-ip-address: true

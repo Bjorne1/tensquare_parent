@@ -1,21 +1,21 @@
-server: 
+server:
   port: 9005
-spring: 
-  application:  
+spring:
+  application:
     name: tensquare-gathering #指定服务名
-  datasource:  
+  datasource:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.217.137:3306/tensquare_gathering?characterEncoding=UTF8
     username: root
     password: root
-  jpa: 
+  jpa:
     database: MySQL
     show-sql: true
   redis:
     host: 192.168.233.128
 eureka:
   client:
-    service‐url:
+    service-url:
       defaultZone: http://localhost:6868/eureka
   instance:
-    prefer‐ip‐address: true
+    prefer-ip-address: true

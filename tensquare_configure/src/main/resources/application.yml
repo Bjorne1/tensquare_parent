@@ -1,6 +1,6 @@
 spring:
   application:
-    name: tensquare‐config
+    name: tensquare-config
   cloud:
     config:
       server:
