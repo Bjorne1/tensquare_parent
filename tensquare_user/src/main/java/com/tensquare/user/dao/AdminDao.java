@@ -11,5 +11,5 @@ import com.tensquare.user.pojo.Admin;
  * @author Administrator
  */
 public interface AdminDao extends JpaRepository<Admin, String>, JpaSpecificationExecutor<Admin> {
-    public Admin findByLoginname(String loginname);
+    Admin findByLoginname(String loginname);
 }

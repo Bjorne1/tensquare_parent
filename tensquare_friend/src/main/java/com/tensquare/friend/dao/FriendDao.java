@@ -20,7 +20,7 @@ public interface FriendDao extends JpaRepository<Friend, String> {
      * @return
      */
     @Query("select count(f) from Friend f where f.userid=?1 and f.friendid=?2")
-    public int selectCount(String userid, String friendid);
+    int selectCount(String userid, String friendid);
 
     /**
      * 更新为互相喜欢
@@ -30,7 +30,7 @@ public interface FriendDao extends JpaRepository<Friend, String> {
      */
     @Modifying
     @Query("update Friend f set f.islike=?3 where f.userid=?1 and f.friendid=?2")
-    public void updateLike(String userid, String friendid, String islike);
+    void updateLike(String userid, String friendid, String islike);
 
     /**
      * 删除喜欢
@@ -40,5 +40,5 @@ public interface FriendDao extends JpaRepository<Friend, String> {
      */
     @Modifying
     @Query("delete from Friend f where f.userid=?1 and f.friendid=?2")
-    public void deleteFriend(String userid, String friendid);
+    void deleteFriend(String userid, String friendid);
 }

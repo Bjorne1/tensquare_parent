@@ -48,7 +48,7 @@ public class ManagerFilter extends ZuulFilter {
             System.out.println("登陆页面" + url);
             return null;
         }
-        String authHeader = (String) request.getHeader("Authorization");//获取头信息
+        String authHeader = request.getHeader("Authorization");//获取头信息
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
             Claims claims = jwtUtil.parseJWT(token);

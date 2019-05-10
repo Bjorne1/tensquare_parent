@@ -18,7 +18,7 @@ public interface UserDao extends JpaRepository<User, String>, JpaSpecificationEx
      * @param mobile
      * @return
      */
-    public User findByMobile(String mobile);
+    User findByMobile(String mobile);
 
     /**
      * 更新关注数
@@ -28,7 +28,7 @@ public interface UserDao extends JpaRepository<User, String>, JpaSpecificationEx
      */
     @Modifying
     @Query("update User u set u.followcount=u.followcount+?2 where u.id=?1")
-    public void incFollowcount(String userid, int x);
+    void incFollowcount(String userid, int x);
 
     /**
      * 更新粉丝数
@@ -38,5 +38,5 @@ public interface UserDao extends JpaRepository<User, String>, JpaSpecificationEx
      */
     @Modifying
     @Query("update User u set u.fanscount=u.fanscount+?2 where u.id=?1")
-    public void incFanscount(String userid, int x);
+    void incFanscount(String userid, int x);
 }
